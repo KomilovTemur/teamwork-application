@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use function PHPUnit\Framework\returnCallback;
+
 class Comment extends Model
 {
     use HasFactory;
@@ -13,4 +15,14 @@ class Comment extends Model
         'user_id',
         'comment',
     ];
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(Comment::class);
+    }
 }

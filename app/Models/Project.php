@@ -9,8 +9,17 @@ class Project extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
         'name',
         'description'
     ];
+
+    public function user()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function comments()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
