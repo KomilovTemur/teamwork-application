@@ -36,12 +36,21 @@
                     <input type="text" name="projectId" hidden="" value="52">
                     <input required="" type="text" name="username" placeholder="Add Member (username)"
                         class="form-control mb-2">
-                    <button type="submit" class="btn btn-dark">Add member</button>
+                    <button type="submit" class="btn btn-dark">
+                        Add member
+                        <i class="fa-solid fa-user-plus"></i>
+                    </button>
                 </form>
             </div>
             <div class="col-md-4">
-                <a href="/project/projectOverview/52" class="btn btn-warning w-100 mb-2">Project overview</a>
-                <a href="/project/deleteProject/52" class="btn btn-danger w-100">Delete Project</a>
+                <a href="/project/projectOverview/52" class="btn btn-warning w-100 mb-2">
+                    <i class="fa-solid my-1 fa-eye"></i>
+                    Project overview
+                </a>
+                <a href="/project/deleteProject/52" class="btn btn-danger w-100">
+                    Delete Project
+                    <i class="fa-solid my-1 fa-trash"></i>
+                </a>
 
                 <h3 class="mt-2 text-center">Members</h3>
                 <ul class="list-group mt-2">

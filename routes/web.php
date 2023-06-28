@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('index');
 });
 Route::get("/dashboard", [ProjectContoller::class, 'index'])->middleware('auth')->name('dashboard');
-Route::prefix('dashboard')->middleware('auth')->group(function () {
+Route::prefix('dashboard')->middleware('auth', 'OwnerProject')->group(function () {
     Route::resource('projects', ProjectContoller::class);
 })->name('dashboard.');
 

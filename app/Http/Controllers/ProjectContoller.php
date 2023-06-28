@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProjectContoller extends Controller
 {
@@ -13,8 +14,8 @@ class ProjectContoller extends Controller
      */
     public function index()
     {
-        // $projects = Project::where('user_id', auth()->id())->get();
-        $projects = Project::all();
+        $user = User::find(auth()->id());
+        $projects = $user->projects;
         return view('dashboard', compact('projects'));
     }
 
@@ -54,11 +55,7 @@ class ProjectContoller extends Controller
     public function edit(string $id)
     {
         $project = Project::findOrFail($id);
-        if (auth()->id() == $project->user[0]->id) {
-            return view('projects.edit', compact('project'));
-        } else {
-            return redirect()->route('dashboard')->with('error', 'you don\'t have permission to this project');
-        }
+        return view('projects.edit', compact('project'));
     }
 
     /**
@@ -67,12 +64,8 @@ class ProjectContoller extends Controller
     public function update(Request $request, string $id)
     {
         $project = Project::findOrFail($id);
-        if (auth()->id() == $project->user_id) {
-            $project->update($request->all());
-            return redirect()->route('projects.edit', $id);
-        } else {
-            return redirect()->route('dashboard')->with('error', 'you don\'t have permission to this project');
-        }
+        $project->update($request->all());
+        return redirect()->route('projects.edit', $id);
     }
 
     /**
@@ -81,11 +74,7 @@ class ProjectContoller extends Controller
     public function destroy(string $id)
     {
         $project = Project::findOrFail($id);
-        if (auth()->id() == $project->user_id) {
-            $project->delete($id);
-            return redirect()->route('dashboard')->with('error', "$project->name project has beed deleted!");
-        } else {
-            return redirect()->route('dashboard')->with('error', 'you don\'t have permission to this project');
-        }
+        $project->delete($id);
+        return redirect()->route('dashboard')->with('error', "$project->name project has beed deleted!");
     }
 }
