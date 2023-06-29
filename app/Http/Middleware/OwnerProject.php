@@ -21,7 +21,7 @@ class OwnerProject
         // $owners = $project->users;
         $user = User::find(auth()->id());
         $projects = $user->projects;
-        dd($request->input('projects'));
+        // dd($request->input('projects'));
         // if (auth()->id() == $project->user_id) {
         //     $project->delete($id);
         //     return redirect()->route('dashboard')->with('error', "$project->name project has beed deleted!");

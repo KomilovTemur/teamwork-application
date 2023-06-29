@@ -28,10 +28,13 @@
                                 </div>
                                 @if (count($project->user) > 1)
                                     <i class="fa-solid fa-users"></i>
+                                    {{-- Str::limit( --}}
                                     @foreach ($project->user as $user)
-                                        {{ $loop->iteration . ": " . \Str::limit($user->name, 5) }}
-                                        
+                                        @if ($loop->index < 3)
+                                            {{ \Str::limit($user->name, 5) }}
+                                        @endif
                                     @endforeach
+                                    {{-- , 10) --}}
                                 @else
                                     <i class="fa-solid fa-pen"></i>
                                     {{ $project->user[0]->name }}
