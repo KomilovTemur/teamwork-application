@@ -5,8 +5,10 @@
 @section('content')
     {{-- @include('layouts.navbar') --}}
     <div class="container">
-        <h2 class="mt-5">Project Settings</h2>
         <div class="row">
+            @if ($project->user[0]->id == auth()->id())
+                <h2 class="mt-5">Project Settings</h2>
+            @endif
             <div class="col-md-8">
                 @if ($project->user[0]->id == auth()->id())
                     <form action="{{ route('projects.update', $project->id) }}" method="post"
@@ -62,8 +64,8 @@
 
             </div>
             <div class="col-md-4">
-                @if (count($project->user) > 0)
-                    @if ($project->user[auth()->id() - 1]->id == auth()->id())
+                @if (count($project->user) > 1)
+                    @if ($project->user[0]->id == auth()->id())
                         <a href="/project/projectOverview/52" class="btn btn-warning w-100 mb-2">
                             <i class="fa-solid my-1 fa-eye"></i>
                             Project overview
@@ -74,7 +76,7 @@
                         </a>
                     @endif
                 @else
-                    @if ($project->user[auth()->id()]->id == auth()->id())
+                    @if ($project->user[0]->id == auth()->id())
                         <a href="/project/projectOverview/52" class="btn btn-warning w-100 mb-2">
                             <i class="fa-solid my-1 fa-eye"></i>
                             Project overview
