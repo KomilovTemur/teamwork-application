@@ -28,18 +28,16 @@
                                 </div>
                                 @if (count($project->user) > 1)
                                     <i class="fa-solid fa-users"></i>
-                                    {{-- Str::limit( --}}
+
                                     @foreach ($project->user as $user)
                                         @if ($loop->index < 3)
                                             {{ \Str::limit($user->name, 5) }}
                                         @endif
                                     @endforeach
-                                    {{-- , 10) --}}
                                 @else
                                     <i class="fa-solid fa-pen"></i>
                                     {{ $project->user[0]->name }}
                                 @endif
-                                {{-- {{ $project->user->name }} --}}
                             </div>
                             <div class="card-body">
                                 <p>{{ $project->description }}</p>
@@ -50,8 +48,9 @@
                                     @method('DELETE')
                                     @csrf
                                     <button class="btn btn-danger delete"
-                                        onclick="return confirm('Are you delete this project?')" type="submit"><i
-                                            class="fa-solid fa-trash"></i></button>
+                                        onclick="return confirm('Are you delete this project?')" type="submit">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </form>
                             </div>
                         </div>
