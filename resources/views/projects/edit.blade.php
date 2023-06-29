@@ -32,15 +32,19 @@
                         </a>
                     </div>
                 </form>
-                <form action="/project/addMember" method="post" class="mt-3">
-                    <input type="text" name="projectId" hidden="" value="52">
-                    <input required="" type="text" name="username" placeholder="Add Member (username)"
-                        class="form-control mb-2">
-                    <button type="submit" class="btn btn-dark">
-                        Add member
-                        <i class="fa-solid fa-user-plus"></i>
-                    </button>
-                </form>
+
+                @if ($project->user[0]->id == auth()->id())
+                    <form action="/project/addMember" method="post" class="mt-3">
+                        <input type="text" name="projectId" hidden="" value="52">
+                        <input required="" type="text" name="username" placeholder="Add Member (username)"
+                            class="form-control mb-2">
+                        <button type="submit" class="btn btn-dark">
+                            Add member
+                            <i class="fa-solid fa-user-plus"></i>
+                        </button>
+                    </form>
+                @endif
+
             </div>
             <div class="col-md-4">
                 <a href="/project/projectOverview/52" class="btn btn-warning w-100 mb-2">
@@ -69,9 +73,6 @@
                                     </form>
                                 @endif
                             @endif
-
-
-
                         </li>
                     @endforeach
                 </ul>
