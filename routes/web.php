@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectContoller;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ Route::get('/', function () {
 Route::get("/dashboard", [ProjectContoller::class, 'index'])->middleware('auth')->name('dashboard');
 Route::prefix('dashboard')->middleware(['auth', 'OwnerProject'])->group(function () {
     Route::resource('projects', ProjectContoller::class);
+    Route::resource('members', MemberController::class);
 })->name('dashboard.');
 
 Route::middleware('auth')->group(function () {
