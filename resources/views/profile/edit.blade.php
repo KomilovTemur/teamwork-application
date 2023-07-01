@@ -15,6 +15,9 @@
 
 </div>
 @endsection
+@section('script')
+<script src="/assets/js/bootstrap.min.js"></script>
+@endsection
 
 
 {{-- <x-app-layout>
