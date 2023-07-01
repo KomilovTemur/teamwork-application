@@ -48,7 +48,7 @@ Basecamp
         <input type="text" name="project_id" hidden="" value="{{ $project->id }}">
 
         <input required="" type="email" name="email" placeholder="Add Member (with email)" class="form-control mb-2">
-        <button type="submit" class="btn btn-dark">
+        <button type="submit" class="btn btn-dark mb-2">
           Add member
           <i class="fa-solid fa-user-plus"></i>
         </button>
