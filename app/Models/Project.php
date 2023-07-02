@@ -20,6 +20,6 @@ class Project extends Model
 
     public function comments()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(Comment::class);
     }
 }
