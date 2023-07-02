@@ -43,7 +43,7 @@ class CommentController extends Controller
     public function show(string $id)
     {
         $project = Project::findOrFail($id);
-        $comments = Comment::where('project_id', $id)->orderByDesc('created_at')->get();
+        $comments = Comment::where('project_id', $id)->orderByDesc('id')->get();
         return view('projects.comment', compact('comments', 'project'));
     }
 
@@ -60,7 +60,9 @@ class CommentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        $comment->update($request->all());
+        return redirect()->back()->with('success', 'your comment has been updated');
     }
 
     /**
@@ -68,6 +70,8 @@ class CommentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+        return redirect()->back()->with('info', 'your comment has been deleted');
     }
 }
