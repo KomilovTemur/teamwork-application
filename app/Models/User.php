@@ -48,4 +48,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Project::class);
     }
+    public function comment()
+    {
+        return $this->belongsToMany(Comment::class);
+    }
 }
