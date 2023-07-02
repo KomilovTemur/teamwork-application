@@ -21,7 +21,8 @@ Basecamp
       <div class="card my-1">
         <div class="cart-header rounded p-2 bg-dark text-light">
           <div class="d-flex align-items-center justify-content-between">
-            {{ $project->name }}
+            {{\Str::limit($project->name,20)}}
+
             <a class="text-decoration-none text-light" href="{{ route('projects.edit', $project->id) }}"><i class="fa-solid fa-gear"></i></a>
           </div>
           @if (count($project->user) > 1)
@@ -33,10 +34,11 @@ Basecamp
             @endif
         </div>
         <div class="card-body">
-          <p>{{ $project->description }}</p>
+          <p>{{\Str::limit($project->description, 50) }}
         </div>
         <div class="card-footer d-flex align-items-center justify-content-between">
-          <a class="btn btn-warning" href="{{route("comments.show", $project->id)}}"><i class="fa-solid fa-comment"></i></a>
+          @if ($project->user[0]->id == auth()->id())
+          <a class="btn btn-warning" href="{{route("comments.show", $project->id)}}">{{count($project->comments)}} <i class="fa-solid fa-comment"></i></a>
           <form action="{{ route('projects.destroy', $project->id) }}" method="post">
             @method('DELETE')
             @csrf
@@ -44,6 +46,12 @@ Basecamp
               <i class="fa-solid fa-trash"></i>
             </button>
           </form>
+          @else
+          <a class="btn btn-warning w-100" href="{{route("comments.show", $project->id)}}"><i class="fa-solid fa-comment"></i> {{count($project->comments)}} comment{{count($project->comments) > 0 ? "s": ""}}</a>
+
+
+
+          @endif
         </div>
       </div>
     </div>
