@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectContoller;
@@ -23,6 +24,7 @@ Route::get("/dashboard", [ProjectContoller::class, 'index'])->middleware('auth')
 Route::prefix('dashboard')->middleware(['auth', 'OwnerProject'])->group(function () {
     Route::resource('projects', ProjectContoller::class);
     Route::resource('members', MemberController::class);
+    Route::resource('comments', CommentController::class);
 })->name('dashboard.');
 
 Route::middleware('auth')->group(function () {
