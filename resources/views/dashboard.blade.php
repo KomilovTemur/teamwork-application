@@ -36,7 +36,7 @@ Basecamp
           <p>{{ $project->description }}</p>
         </div>
         <div class="card-footer d-flex align-items-center justify-content-between">
-          <a class="btn btn-warning" href="/comments/48"><i class="fa-solid fa-comment"></i></a>
+          <a class="btn btn-warning" href="{{route("comments.show", $project->id)}}"><i class="fa-solid fa-comment"></i></a>
           <form action="{{ route('projects.destroy', $project->id) }}" method="post">
             @method('DELETE')
             @csrf
