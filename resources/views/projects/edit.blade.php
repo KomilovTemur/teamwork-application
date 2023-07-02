@@ -62,8 +62,7 @@ Basecamp
           <p> {{ $project->description }}</p>
         </div>
         <div class="card-footer d-flex align-items-center justify-content-between">
-          <a class="btn btn-warning w-100" href="/comments/48"><i class="fa-solid fa-comment"></i>
-            Comments</a>
+          <a class="btn btn-warning w-100" href="{{route("comments.show", $project->id)}}"><i class="fa-solid fa-comment"></i> {{count($project->comments)}} comment{{count($project->comments) > 0 ? "s": ""}}</a>
         </div>
       </div>
       @endif
