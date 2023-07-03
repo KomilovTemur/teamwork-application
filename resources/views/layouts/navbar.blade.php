@@ -15,7 +15,8 @@
       <form action="{{ route('logout') }}" method="post">
         @csrf
         <button class="btn btn-danger text-light">
-          <i class="fa-solid fa-arrow-right-from-bracket px-2"></i>
+          Logout
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
         </button>
       </form>
     </li>
