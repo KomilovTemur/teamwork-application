@@ -75,10 +75,15 @@ Basecamp
         <i class="fa-solid my-1 fa-eye"></i>
         Project overview
       </a>
-      <a href="/project/deleteProject/52" class="btn btn-danger w-100">
-        Delete Project
-        <i class="fa-solid my-1 fa-trash"></i>
-      </a>
+      <form action="{{ route('projects.destroy', $project->id) }}" method="post">
+        @method('DELETE')
+        @csrf
+        <button class="btn btn-danger w-100" onclick="return confirm('Are you delete this project?')" type="submit">
+          Delete Project
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </form>
+
       @endif
       @else
       @if ($project->user[0]->id == auth()->id())

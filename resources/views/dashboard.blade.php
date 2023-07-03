@@ -18,11 +18,10 @@ Basecamp
     @else
     @foreach ($projects as $project)
     <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="card my-1">
+      <div class="card my-1" style="min-height: 225px">
         <div class="cart-header rounded p-2 bg-dark text-light">
           <div class="d-flex align-items-center justify-content-between">
             {{\Str::limit($project->name,20)}}
-
             <a class="text-decoration-none text-light" href="{{ route('projects.edit', $project->id) }}"><i class="fa-solid fa-gear"></i></a>
           </div>
           @if (count($project->user) > 1)
@@ -42,15 +41,14 @@ Basecamp
           <form action="{{ route('projects.destroy', $project->id) }}" method="post">
             @method('DELETE')
             @csrf
-            <button class="btn btn-danger delete" onclick="return confirm('Are you delete this project?')" type="submit">
+            <button class="btn btn-danger w-100" onclick="return confirm('Are you delete this project?')" type="submit">
+              Delete
               <i class="fa-solid fa-trash"></i>
             </button>
           </form>
+
           @else
-          <a class="btn btn-warning w-100" href="{{route("comments.show", $project->id)}}"><i class="fa-solid fa-comment"></i> {{count($project->comments)}} comment{{count($project->comments) > 0 ? "s": ""}}</a>
-
-
-
+          <a class="btn btn-warning w-100" href="{{route("comments.show", $project->id)}}"><i class="fa-solid fa-comment"></i> {{count($project->comments)}} comment{{count($project->comments) > 1 ? "s": ""}}</a>
           @endif
         </div>
       </div>
