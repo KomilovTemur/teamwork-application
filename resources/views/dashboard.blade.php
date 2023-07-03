@@ -33,7 +33,7 @@ Basecamp
             @endif
         </div>
         <div class="card-body">
-          <p>{{\Str::limit($project->description, 50) }}
+          {!!\Str::limit($project->description, 50) !!}
         </div>
         <div class="card-footer d-flex align-items-center justify-content-between">
           @if ($project->user[0]->id == auth()->id())
