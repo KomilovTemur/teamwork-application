@@ -22,7 +22,7 @@ Basecamp
         <div class="cart-header rounded p-2 bg-dark text-light">
           <div class="d-flex align-items-center justify-content-between">
             {{\Str::limit($project->name,20)}}
-            <a class="text-decoration-none text-light" href="{{ route('projects.edit', $project->id) }}"><i class="fa-solid fa-gear"></i></a>
+            <a class="text-decoration-none text-light" href="{{ route('projects.show', $project->id) }}"><i class="fa-solid fa-eye"></i></a>
           </div>
           @if (count($project->user) > 1)
           <i class="fa-solid fa-users"></i>
