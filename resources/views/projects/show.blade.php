@@ -21,7 +21,7 @@ Basecamp
           <a class="nav-link" href="#"><i class="fas fa-users"></i> Users</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-cloud"></i> Actions</a>
+          <a class="nav-link" href="#"><i class="fas fa-play-circle"></i> Actions</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><i class="fas fa-gear"></i> Settings</a>
