@@ -4,6 +4,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectContoller;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,7 @@ Route::get('/', function () {
 });
 Route::get("/dashboard", [ProjectContoller::class, 'index'])->middleware('auth')->name('dashboard');
 Route::prefix('dashboard')->middleware(['auth', 'OwnerProject'])->group(function () {
+    Route::get("/user/{id}", [UserController::class, 'user'])->name('user');
     Route::resource('projects', ProjectContoller::class);
     Route::resource('members', MemberController::class);
     Route::resource('comments', CommentController::class);
