@@ -140,10 +140,10 @@
 @section('script')
     <script src="https://cdn.ckeditor.com/ckeditor5/38.1.0/classic/ckeditor.js"></script>
     <script>
-        ClassicEditor
-            .create(document.querySelector('.ckeditor'))
-            .catch(error => {
-                console.error(error);
-            });
+        // ClassicEditor
+        //     .create(document.querySelector('.ckeditor'))
+        //     .catch(error => {
+        //         console.error(error);
+        //     });
     </script>
 @endsection
