@@ -10,14 +10,17 @@ class Project extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'description'
+        'description',
     ];
 
     public function user()
     {
         return $this->belongsToMany(User::class);
     }
-
+    public function attachments()
+    {
+        return $this->hasMany(Attachment::class);
+    }
     public function comments()
     {
         return $this->hasMany(Comment::class);

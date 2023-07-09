@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Comment::class);
     }
+    public function attachments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
 }

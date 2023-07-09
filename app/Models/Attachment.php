@@ -9,7 +9,20 @@ class Attachment extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'user_id',
+        'project_id',
         'file',
+        'name',
         'extension'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
+
 }
