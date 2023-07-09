@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttachementController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
@@ -27,6 +28,7 @@ Route::prefix('dashboard')->middleware(['auth', 'OwnerProject'])->group(function
     Route::resource('projects', ProjectContoller::class);
     Route::resource('members', MemberController::class);
     Route::resource('comments', CommentController::class);
+    Route::resource('attachments', AttachementController::class);
 })->name('dashboard.');
 
 Route::middleware('auth')->group(function () {
