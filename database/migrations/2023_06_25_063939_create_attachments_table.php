@@ -13,7 +13,9 @@ return new class extends Migration {
         Schema::create('attachments', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
+            $table->string('project_id');
             $table->string('file');
+            $table->string('name');
             $table->string('extension');
             $table->timestamps();
         });

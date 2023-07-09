@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->number('viewers')->default(1);
+            $table->integer('viewers')->default(1);
             $table->timestamps();
         });
     }
