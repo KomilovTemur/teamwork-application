@@ -16,7 +16,7 @@
                     <div class="fi fi-{{ $attachment->extension }}">
                         <div class="fi-content">{{ $attachment->extension }}</div>
                     </div>
-                    {{-- @endif --}}
+                   
                     <div class="card-body">
                         <h5 class="card-title"> {{ $attachment->name }}</h5>
                         {{ $attachment->user->email }}
