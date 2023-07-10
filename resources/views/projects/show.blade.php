@@ -54,6 +54,7 @@
           @endif
           <div class="card-body">
             <h5 class="card-title"> {{ $attachment->name }}</h5>
+            {{$attachment->user->email}}
           </div>
         </div>
       </div>
