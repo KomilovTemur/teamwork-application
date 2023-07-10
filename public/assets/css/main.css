@@ -57,14 +57,6 @@
   margin-top: 60px;
 }
 
-nav {
-  padding: 10px 40px;
-  position: fixed;
-  width: 100vw;
-  top: 0;
-  z-index: 9999;
-}
-
 
 nav>.nav-links>li {
   padding: 0 15px;
