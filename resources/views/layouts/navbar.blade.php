@@ -1,8 +1,6 @@
-<nav class="bg-light d-flex align-items-center justify-content-between">
+<nav class="bg-light p-2 d-flex align-items-center justify-content-between">
   <div class="logo">
     <h2><a class="text-dark text-decoration-none" href="{{route('dashboard')}}">@yield('user')</a></h2>
-
-
   </div>
   <ul class="nav-links m-0 d-flex align-items-center justify-content-between">
     <li>

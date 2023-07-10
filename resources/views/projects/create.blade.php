@@ -1,6 +1,6 @@
 @extends('layouts.site')
 @section('user')
-    Basecamp
+Collabration App
 @endsection
 @section('style')
     style="display: flex;

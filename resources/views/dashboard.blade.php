@@ -1,6 +1,6 @@
 @extends('layouts.site')
 @section('user')
-Basecamp
+Collabration App
 @endsection
 @section('content')
 @include('layouts.navbar')
