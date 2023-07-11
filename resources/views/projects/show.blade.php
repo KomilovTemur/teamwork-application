@@ -10,6 +10,7 @@
 
     <div class="container">
         @foreach ($project->attachments as $attachment)
+        <img src="{{asset('/attachments/'.$attachment->file)}}" alt="file">
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="d-flex align-items-center justify-content-start">
 
