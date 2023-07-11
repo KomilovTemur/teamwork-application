@@ -54,7 +54,7 @@ class AttachementController extends Controller
     public function show(string $id)
     {
         $file = Attachment::findOrFail($id);
-        return Storage::download($file->file);
+        return Storage::get($file->file);
     }
 
     /**
