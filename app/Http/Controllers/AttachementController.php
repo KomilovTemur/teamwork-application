@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Attachment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AttachementController extends Controller
 {
@@ -33,15 +34,15 @@ class AttachementController extends Controller
             'project_id' => 'required',
         ]);
         $attachment = new Attachment;
-        $file_name = "file_" . auth()->id() . "+" . $request->project_id . "+" . time() . "." . request()->file->getClientOriginalExtension();
         $file_extension = $request->file->getClientOriginalExtension();
-        $attachment->file = $file_name;
+
         $attachment->name = $request->file->getClientOriginalName();
         $attachment->extension = $file_extension;
         $attachment->project_id = $request->project_id;
         $attachment->user_id = auth()->id();
         // save file to storage
-        $request->file->move(public_path('attachments'), $file_name);
+        $attachment->file = Storage::put("attachments", $request->file("file"));
+        // $request->file->move(public_path('attachments'), $file_name);
         // save data to database
         $attachment->save();
         return redirect()->route('projects.show', $request->project_id)->with('success', 'new attachment saved');
@@ -52,7 +53,8 @@ class AttachementController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $file = Attachment::findOrFail($id);
+        return Storage::download($file->file);
     }
 
     /**
