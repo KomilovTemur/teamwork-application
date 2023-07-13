@@ -32,7 +32,7 @@
                         <p>
                             <i class="fas fa-user"></i> {{ $attachment->user->email }}
                         </p>
-                        <a href="{{ route('attachments.show', $attachment->id) }}" class="btn btn-success" download="">
+                        <a href="{{ route('attachments.show', $attachment->id) }}" class="btn btn-success">
                             <i class="fas fa-cloud-download"></i>
                             download
                         </a>

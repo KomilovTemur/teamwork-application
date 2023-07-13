@@ -54,7 +54,11 @@ class AttachementController extends Controller
     public function show(string $id)
     {
         $file = Attachment::findOrFail($id);
-        return Storage::get($file->file);
+        if (Storage::exists($file->file)) {
+            return Storage::download($file->file);
+        } else {
+            return redirect()->route('projects.show', $file->project_id)->with('error', "File not found");
+        }
     }
 
     /**
