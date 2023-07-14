@@ -11,32 +11,45 @@
     <div class="container">
         @foreach ($project->attachments as $attachment)
             <div class="card mb-3" style="max-width: 540px;">
-                <div class="d-flex align-items-center justify-content-start">
-                    @php
-                        $img_extensions = ['png', 'jpeg', 'jpeg', 'svg', 'gif'];
-                    @endphp
-                    @if (in_array($attachment->extension, $img_extensions))
-                        <img src="{{ route('attachments.show', $attachment->id) }}" alt="{{ $attachment->name }}"
-                            style="width: 200px" />
-                    @else
-                        <div class="p-5">
-                            <div class="fi fi-{{ $attachment->extension }}">
-                                <div class="fi-content">{{ $attachment->extension }}</div>
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center justify-content-start">
+                        @php
+                            $img_extensions = ['png', 'jpeg', 'jpg', 'svg', 'gif'];
+                        @endphp
+                        @if (in_array($attachment->extension, $img_extensions))
+                            <img src="{{ route('attachments.show', $attachment->id) }}" alt="{{ $attachment->name }}"
+                                style="width: 150px" />
+                        @else
+                            <div class="p-5">
+                                <div class="fi fi-{{ $attachment->extension }}">
+                                    <div class="fi-content">{{ $attachment->extension }}</div>
+                                </div>
                             </div>
+                        @endif
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <i class="fas fa-file"></i> {{ \Str::limit($attachment->name, 20) }}
+                            </h5>
+                            <p class="mb-2">
+                                <i class="fas fa-user"></i> {{ $attachment->user->email }}
+                            </p>
+                            <a href="{{ route('attachments.show', $attachment->id) }}" class="btn btn-success">
+                                <i class="fas fa-cloud-download"></i>
+                                download
+                            </a>
+                        </div>
+                    </div>
+                    @if ($attachment->user->id == auth()->id())
+                        <div class="p-3">
+                            <form action="{{ route('attachments.destroy', $attachment->id) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-secondary" type="submit">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
                         </div>
                     @endif
-                    <div class="card-body d-flex align-items-center flex-column">
-                        <h5 class="card-title">
-                            <i class="fas fa-file"></i> {{ \Str::limit($attachment->name, 20) }}
-                        </h5>
-                        <p>
-                            <i class="fas fa-user"></i> {{ $attachment->user->email }}
-                        </p>
-                        <a href="{{ route('attachments.show', $attachment->id) }}" class="btn btn-success">
-                            <i class="fas fa-cloud-download"></i>
-                            download
-                        </a>
-                    </div>
                 </div>
             </div>
         @endforeach
@@ -44,6 +57,9 @@
             <div class="alert alert-danger">{{ $message }}</div>
         @endif
         @if ($message = Session::get('success'))
+            <div class="alert alert-success">{{ $message }}</div>
+        @endif
+        @if ($message = Session::get('success-delete'))
             <div class="alert alert-success">{{ $message }}</div>
         @endif
         <div class="row">
