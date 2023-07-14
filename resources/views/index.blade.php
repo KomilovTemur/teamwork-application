@@ -8,7 +8,7 @@
 @endsection
 @section('content')
     <div class="container text-center">
-        <h2 class="mb-2">My base camp</h2>
+        <h2 class="mb-2">Work with your Team</h2>
         <a class="btn btn-primary mx-1" href="{{ route('login') }}">Login</a>
         <a class="btn btn-primary mx-1" href="{{ route('register') }}">Sign up</a>
     </div>
