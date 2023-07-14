@@ -53,11 +53,11 @@ class AttachementController extends Controller
      */
     public function show(string $id)
     {
-        $file = Attachment::findOrFail($id);
-        if (Storage::exists($file->file)) {
-            return Storage::download($file->file);
+        $attachment = Attachment::findOrFail($id);
+        if (Storage::exists($attachment->file)) {
+            return Storage::download($attachment->file);
         } else {
-            return redirect()->route('projects.show', $file->project_id)->with('error', "File not found");
+            return redirect()->route('projects.show', $attachment->project_id)->with('error', "File not found");
         }
     }
 
@@ -82,6 +82,12 @@ class AttachementController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $attachment = Attachment::findOrFail($id);
+        if ($attachment->user_id != auth()->id()) {
+            return redirect()->route('projects.show', $attachment->project_id)->with('error', 'You can\'t delete this attachment!');
+        }
+        Storage::delete($attachment->file);
+        $attachment->delete();
+        return redirect()->route('projects.show', $attachment->project_id)->with('success-delete', 'successfully deleted');
     }
 }
