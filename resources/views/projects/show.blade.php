@@ -79,7 +79,7 @@
 @section('script')
     <script src="/assets/js/bootstrap.min.js"></script>
     {{-- <script src="/assets/js/file-icons.js"></script> --}}
-    <script src="https://cdn.ckeditor.com/ckeditor5/38.1.0/classic/ckeditor.js"></script>
+    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/38.1.0/classic/ckeditor.js"></script> --}}
     <script>
         // ClassicEditor
         //   .create(document.querySelector('.ckeditor'))
