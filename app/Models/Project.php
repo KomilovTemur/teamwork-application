@@ -17,6 +17,10 @@ class Project extends Model
     {
         return $this->belongsToMany(User::class);
     }
+    public function viewer()
+    {
+        return $this->hasMany(Viewers::class);
+    }
     public function attachments()
     {
         return $this->hasMany(Attachment::class);
