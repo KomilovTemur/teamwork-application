@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\User;
+use App\Models\Viewers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -47,6 +48,17 @@ class ProjectContoller extends Controller
     public function show(string $id)
     {
         $project = Project::findOrFail($id);
+        $viewer = Viewers::where("user_id", '=', auth()->id())->where('project_id', '=', $id)->get();
+
+        if (count($viewer) == 0) {
+            $project::where('id', $id)->update(['viewers' => $project->viewers + 1]);
+            $new_viewer = new Viewers;
+            $new_viewer->user_id = auth()->id();
+            $new_viewer->project_id = $id;
+            $new_viewer->save();
+            return view('projects.show', ['project' => Project::findOrFail($id)]);
+        }
+
         return view('projects.show', compact('project'));
     }
 
