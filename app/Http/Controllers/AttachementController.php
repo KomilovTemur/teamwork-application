@@ -35,7 +35,6 @@ class AttachementController extends Controller
         ]);
         $attachment = new Attachment;
         $file_extension = $request->file->getClientOriginalExtension();
-
         $attachment->name = $request->file->getClientOriginalName();
         $attachment->extension = $file_extension;
         $attachment->project_id = $request->project_id;

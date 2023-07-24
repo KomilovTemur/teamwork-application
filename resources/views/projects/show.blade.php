@@ -3,7 +3,7 @@
   Collabration App
 @endsection
 @section('css')
-  <link rel="stylesheet" href="/assets/css/file-icons.css">
+  <link rel="stylesheet" href="/assets/css/file-icons.css" />
 @endsection
 @section('viewers')
   {{ count($project->viewer) }}
